@@ -32,4 +32,4 @@ The model is able to sucessfully classify reviews as postive or negative.
 A <b>Video</b> demostration of this project is given as:
 
 
-![](images/https://github.com/AshishBhatnagar022/MovieReviewSentimentWebapp/blob/master/images/Movie-Review-Sentiment-Webapp-Go.gif)
+![Movie-Review-Sentiment-Webapp-Go](https://user-images.githubusercontent.com/50323194/83966147-19f25100-a8d6-11ea-806c-4d1b523d67f0.gif)
