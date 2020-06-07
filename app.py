@@ -30,14 +30,7 @@ app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 # 
 import json
 from flask import jsonify
-
-# NAMES=["abc","abcd","abcde","abcdef"]
-
 import pickle
-# pickle.dump(tokenizer, open('drive/My Drive/tranform.pkl', 'wb'))
-
-# pickle.dump(model, open("drive/My Drive/model.pkl", 'wb'))
-
 
 model = pickle.load(open('model.pkl', 'rb'))
 tokenizer=pickle.load(open('tranform.pkl','rb'))
@@ -63,50 +56,7 @@ def url_to_image(url):
   return url1
 @app.route('/')
 def index():
-  full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'my.jpg')
-  return render_template("index.html", user_image = full_filename)
-  
-  # if request.method == 'GET':
-    # form = request.form.get("autocomp")
-    # form="l"
-    # images=[]
-    # title=[]
-    # mainImg=""
-    # recomHead="Trending Now"
-    # message="Enter the Movie name"
-    # if request.method == 'POST':
-    #   comment = request.form['w3review']
-
-      # test_sample1=' I really like it because it is so good'
-      # test_sample2='This movie is  bad'
-      # test_samples=[test_sample1,test_sample2]
-      # test_sample_token=tokenizer.texts_to_sequences(test_samples)
-      # test_sample_tokens_pad=pad_sequences(test_sample_token,maxlen=200)
-      # d=model.predict(x=test_sample_tokens_pad)
-      # print(d)
-      # print('Reviews\n')
-      # for test in test_samples:
-      #   print(test)
-      #   print('\n')  
-      # print('Sentiment Prediction\n')
-      # for i in range( len(d)):
-      #   if d[i]>0.5:
-      #     print('This review is positive ')
-      #   else:
-      #     print('This review is negative')
-      # return redirect("result",comment=comment)
-      # render_template('result.html',comment=comment)
-        # message = request.form.get("autocomp")
-        # form = request.form.get("autocomp")
-
-        
-
-  
-       
-    # else:
-      # pass
-
-    # return render_template('index.html')
+  return render_template('index.html')
 @app.route('/autocomplete',methods=['GET'])
 def autocomplete():
     search = request.args.get('autocomplete')
@@ -142,28 +92,11 @@ def result():
         test_sample_token=tokenizer.texts_to_sequences(test_samples)
         test_sample_tokens_pad=pad_sequences(test_sample_token,maxlen=200)
         prediction=model.predict(x=test_sample_tokens_pad)
-        # if request.method == 'POST':
-          # return redirect('/')
+       
 
 
 
-
-        # if clean_data(message) in list(data1['Title1']):
-        #     print("YSSSS")
-        #     mov=get_recommendations(clean_data(message),cosine_sim2)
-        #     mainImg=data1[data1['Title1']==clean_data(message)]['Poster'].values[0]
-        #     mainImg=url_to_image(mainImg)
-        # print(d)
-            # print('Reviews\n')
-        # for test in test_samples:
-              # print(test)
-              # print('\n')  
-            # print('Sentiment Prediction\n')
-        # for i in range( len(d)):
-          # if d[i]>0.5:
-            # prediction='This review is positive'
-          # else:
-            # prediction='This review is negative'
+       
         return render_template('result.html',comment=comment,prediction=prediction,mainImg=mainImg,movie_name=movie_name)
 
 
