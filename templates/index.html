@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% block content %}
+
+
+
+<head>
+
+  <!-- <script> -->
+
+    <meta charset="utf-8">
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<script>
+    $(function() {
+        $.ajax({
+            url: '{{ url_for("autocomplete") }}'
+            }).done(function (data) {
+                $('#autocomplete').autocomplete({
+                    source: data,
+                    minLength: 1
+                });
+            });
+        });
+</script>
+<body class="bg-image">
+  
+<div class="container" align="center" class="bg-text">
+  <h2 >Movie Review Sentiment Analysis</h2>
+<br><br>
+<h3 style="color:red;">{{error}}</h3>
+<br>
+<form id="upload-file" method="post" enctype="multipart/form-data" action="{{ url_for('result')}}"   >
+       
+  <input type="text" id="autocomplete" name="autocomp" size="48" placeholder="Enter the Movie Name">
+  <br><br>
+
+<textarea id="w3review" name="w3review" rows="4" cols="50" placeholder="Enter your Movie Review">
+</textarea>
+<br><br><br>
+<button class="button"><b>Predict</b></button>
+</form>
+</div>
+
+</body>
+<style type="text/css">
+
+  .bg-image {
+  /* The image used */
+  background-image: url("{{ user_image }}");
+
+  /* Add the blur effect */
+  /*filter: blur(8px);*/
+  /*-webkit-filter: blur(4px);*/
+
+  /* Full height */
+  /*height: 100%;*/
+
+  /* Center and scale the image nicely */
+  /*background-position: center;*/
+  /*background-repeat: no-repeat;*/
+  /*background-size: cover;*/
+}
+  /*body {*/
+ /*background-image: url("https://boygeniusreport.files.wordpress.com/2015/10/browser-popcorn.png?w=1200");*/
+ /*background-color: #cccccc;*/
+
+/*}*/
+  .button {
+    
+  background-color: #008CBA; /* Blue */
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+</style>
+
+<!-- <center> -->
+    <!-- <h1>AUTOCOMPLETE WITH FLASK</h1> -->
+    <!-- <input id="autocomplete" type="text" name="autocomp" class="form-control"> -->
+
+{% endblock %}
